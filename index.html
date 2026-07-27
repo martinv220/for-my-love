@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для моей любимой</title>
+    <style>
+        body {
+            background-color: #ffe6e6;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 50px;
+            color: #4a4a4a;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: inline-block;
+            max-width: 400px;
+        }
+        h1 {
+            color: #ff4d6d;
+        }
+        .heart {
+            font-size: 50px;
+            color: #ff4d6d;
+            animation: beat 1s infinite alternate;
+        }
+        @keyframes beat {
+            to { transform: scale(1.1); }
+        }
+        button {
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #ff758f;
+        }
+        #secret-message {
+            display: none;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #c9184a;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="heart">❤️</div>
+        <h1>Привет, королева моя</h1>
+        <p>Я создал этот маленький сайт специально для тебя, чтобы поднять тебе настроение.</p>
+        
+        <button onclick="showMessage()">Нажми сюда</button>
+        
+        <div id="secret-message">
+            Ты самое лучшее, что есть в моей жизни 🥰
+        </div>
+    </div>
+
+    <script>
+        function showMessage() {
+            var msg = document.getElementById('secret-message');
+            msg.style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>

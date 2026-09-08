@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для моей любимой ✨</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #0f0c20;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            color: #fff;
+            perspective: 1000px;
+        }
+
+        /* Анимированный фоновый градиент */
+        .bg-glow {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 77, 109, 0.35) 0%, rgba(123, 44, 191, 0.25) 50%, rgba(0,0,0,0) 70%);
+            filter: blur(60px);
+            z-index: 1;
+            animation: pulseGlow 6s infinite alternate ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.6; }
+            100% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+        }
+
+        /* 3D Премиум-карточка */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 45px 35px;
+            border-radius: 35px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.05);
+            text-align: center;
+            max-width: 440px;
+            width: 90%;
+            position: relative;
+            z-index: 10;
+            transition: transform 0.1s ease-out;
+            transform-style: preserve-3d;
+        }
+
+        .main-icon {
+            font-size: 75px;
+            margin-bottom: 15px;
+            display: inline-block;
+            filter: drop-shadow(0 10px 15px rgba(255, 77, 109, 0.5));
+            animation: float 3s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(5deg); }
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ff758f, #ffb3c1, #e0aaff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #d8b4e2;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .btn-yes {
+            background: linear-gradient(45deg, #ff4d6d, #c9184a);
+            color: white;
+            border: none;
+            padding: 16px 36px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(255, 77, 109, 0.4);
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-yes:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(255, 77, 109, 0.7);
+        }
+
+        /* Раскрывающийся контент */
+        #secret-content {
+            display: none;
+            margin-top: 25px;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message-box {
+            background: rgba(255, 77, 109, 0.1);
+            border: 1px solid rgba(255, 77, 109, 0.3);
+            border-radius: 20px;
+            padding: 20px;
+            color: #fff;
+            font-size: 17px;
+            line-height: 1.6;
+            box-shadow: inset 0 0 15px rgba(255, 77, 109, 0.2);
+        }
+
+        /* Частицы за курсором */
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            border-radius: 50%;
+            background: radial-gradient(circle, #ffb3c1 0%, rgba(255,255,255,0) 70%);
+            animation: fadeSparkle 1s linear forwards;
+            z-index: 999;
+        }
+
+        @keyframes fadeSparkle {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+
+    <div class="card" id="card">
+        <div class="main-icon" id="icon">✨</div>
+        <h1 id="title">Для самой невероятной</h1>
+        <p id="desc">Нажми на кнопку ниже, чтобы открыть кое-что особенное...</p>
+
+        <button class="btn-yes" id="action-btn" onclick="revealMagic()">Открыть волшебство 💖</button>
+
+        <div id="secret-content">
+            <div class="message-box">
+                Ты моё самое главное вдохновение и счастье.<br><br>
+                Хочу обнимать тебя крепко-крепко и никогда не отпускать. Верю в тебя всей душой 💖✨
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 3D эффект наклона карточки за мышкой
+        const card = document.getElementById('card');
+        document.addEventListener('mousemove', (e) => {
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+            card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            
+            // Создание искр за курсором
+            createSparkle(e.clientX, e.clientY);
+        });
+
+        // Частицы при движении
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            const size = Math.random() * 12 + 6;
+            sparkle.style.width = `${size}px`;
+            sparkle.style.height = `${size}px`;
+            sparkle.style.left = `${x - size / 2}px`;
+            sparkle.style.top = `${y - size / 2}px`;
+            document.body.appendChild(sparkle);
+
+            setTimeout(() => sparkle.remove(), 1000);
+        }
+
+        // Звуковой эффект колокольчика (Web Audio API)
+        function playChime() {
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5
+            osc.frequency.exponentialRampToValueAtTime(1174.66, audioCtx.currentTime + 0.8); // D6
+
+            gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.8);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc.start();
+            osc.stop(audioCtx.currentTime + 0.8);
+        }
+
+        // Запуск анимации при клике
+        function revealMagic() {
+            playChime();
+            document.getElementById('icon').innerHTML = '👑';
+            document.getElementById('title').innerText = 'Ты моя королева';
+            document.getElementById('desc').style.display = 'none';
+            document.getElementById('action-btn').style.display = 'none';
+            document.getElementById('secret-content').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>

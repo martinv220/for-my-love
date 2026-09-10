@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Для моей любимой ✨</title>
+    <title>Для моей единственной ✨</title>
     <style>
         * {
             box-sizing: border-box;
@@ -11,218 +11,343 @@
             padding: 0;
         }
 
-        body {
-            background: #0f0c20;
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #03001e;
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow-x: hidden;
             color: #fff;
-            perspective: 1000px;
         }
 
-        /* Анимированный фоновый градиент */
-        .bg-glow {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(255, 77, 109, 0.35) 0%, rgba(123, 44, 191, 0.25) 50%, rgba(0,0,0,0) 70%);
-            filter: blur(60px);
+        /* Интерактивный интергалактический Canvas */
+        #space-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: 1;
-            animation: pulseGlow 6s infinite alternate ease-in-out;
         }
 
-        @keyframes pulseGlow {
-            0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.6; }
-            100% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+        /* Неоновые фоновые сферы */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.5;
+            z-index: 2;
+            animation: orbFloat 10s infinite alternate ease-in-out;
         }
 
-        /* 3D Премиум-карточка */
-        .card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 45px 35px;
-            border-radius: 35px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.05);
-            text-align: center;
-            max-width: 440px;
-            width: 90%;
-            position: relative;
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: #ff007f;
+            top: 10%;
+            left: 15%;
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            background: #7b2cbf;
+            bottom: 5%;
+            right: 10%;
+            animation-delay: -5s;
+        }
+
+        @keyframes orbFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, -40px) scale(1.2); }
+        }
+
+        /* Премиальная 3D-карточка Ultra-Glassmorphism */
+        .wrapper {
+            perspective: 1000px;
             z-index: 10;
-            transition: transform 0.1s ease-out;
+            width: 90%;
+            max-width: 460px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 35px;
+            padding: 50px 35px;
+            text-align: center;
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.8), 
+                        inset 0 0 30px rgba(255, 255, 255, 0.05);
             transform-style: preserve-3d;
+            transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+            position: relative;
         }
 
-        .main-icon {
-            font-size: 75px;
-            margin-bottom: 15px;
-            display: inline-block;
-            filter: drop-shadow(0 10px 15px rgba(255, 77, 109, 0.5));
-            animation: float 3s infinite ease-in-out;
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 35px;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(255,117,143,0.6), rgba(255,255,255,0.05), rgba(123,44,191,0.6));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-12px) rotate(5deg); }
+        .avatar-glow {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff4d6d, #7b2cbf);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 50px;
+            box-shadow: 0 0 30px rgba(255, 77, 109, 0.8);
+            animation: avatarPulse 2s infinite alternate ease-in-out;
+            transform: translateZ(40px);
+        }
+
+        @keyframes avatarPulse {
+            0% { transform: translateZ(40px) scale(1); box-shadow: 0 0 25px rgba(255, 77, 109, 0.6); }
+            100% { transform: translateZ(40px) scale(1.08); box-shadow: 0 0 45px rgba(255, 77, 109, 1); }
         }
 
         h1 {
-            font-size: 28px;
-            font-weight: 700;
-            background: linear-gradient(45deg, #ff758f, #ffb3c1, #e0aaff);
+            font-size: 30px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 30%, #ffb3c1 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 15px;
+            letter-spacing: 0.5px;
+            transform: translateZ(30px);
         }
 
         p {
-            color: #d8b4e2;
+            color: #d1c4e9;
             font-size: 16px;
             line-height: 1.6;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             font-weight: 300;
+            transform: translateZ(20px);
         }
 
-        .btn-yes {
-            background: linear-gradient(45deg, #ff4d6d, #c9184a);
-            color: white;
+        /* Неоновая интерактивная кнопка */
+        .btn-portal {
+            position: relative;
+            background: linear-gradient(45deg, #ff2a55, #a100ff);
+            color: #fff;
             border: none;
-            padding: 16px 36px;
+            padding: 18px 42px;
             font-size: 18px;
-            font-weight: 600;
+            font-weight: 700;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 10px 25px rgba(255, 77, 109, 0.4);
-            transition: all 0.3s ease;
-            letter-spacing: 0.5px;
+            box-shadow: 0 10px 30px rgba(255, 42, 85, 0.5);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            letter-spacing: 1px;
+            transform: translateZ(35px);
+            overflow: hidden;
         }
 
-        .btn-yes:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 15px 35px rgba(255, 77, 109, 0.7);
+        .btn-portal:hover {
+            transform: translateZ(45px) scale(1.06);
+            box-shadow: 0 15px 40px rgba(255, 42, 85, 0.8), 0 0 20px rgba(161, 0, 255, 0.6);
         }
 
-        /* Раскрывающийся контент */
-        #secret-content {
+        /* Секретное признание */
+        #secret-message {
             display: none;
             margin-top: 25px;
-            animation: fadeInUp 0.8s ease forwards;
+            transform: translateZ(30px);
+            animation: popup 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes popup {
+            from { opacity: 0; transform: translateZ(10px) scale(0.8); }
+            to { opacity: 1; transform: translateZ(30px) scale(1); }
         }
 
-        .message-box {
-            background: rgba(255, 77, 109, 0.1);
-            border: 1px solid rgba(255, 77, 109, 0.3);
+        .glass-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 117, 143, 0.3);
             border-radius: 20px;
-            padding: 20px;
+            padding: 25px;
+            font-size: 18px;
+            line-height: 1.7;
             color: #fff;
-            font-size: 17px;
-            line-height: 1.6;
-            box-shadow: inset 0 0 15px rgba(255, 77, 109, 0.2);
-        }
-
-        /* Частицы за курсором */
-        .sparkle {
-            position: fixed;
-            pointer-events: none;
-            border-radius: 50%;
-            background: radial-gradient(circle, #ffb3c1 0%, rgba(255,255,255,0) 70%);
-            animation: fadeSparkle 1s linear forwards;
-            z-index: 999;
-        }
-
-        @keyframes fadeSparkle {
-            0% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(0); opacity: 0; }
+            box-shadow: inset 0 0 20px rgba(255, 77, 109, 0.15);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-glow"></div>
+    <canvas id="space-canvas"></canvas>
 
-    <div class="card" id="card">
-        <div class="main-icon" id="icon">✨</div>
-        <h1 id="title">Для самой невероятной</h1>
-        <p id="desc">Нажми на кнопку ниже, чтобы открыть кое-что особенное...</p>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
 
-        <button class="btn-yes" id="action-btn" onclick="revealMagic()">Открыть волшебство 💖</button>
+    <div class="wrapper">
+        <div class="card" id="card">
+            <div class="avatar-glow" id="avatar">👑</div>
+            <h1 id="title">Моя Вселенная</h1>
+            <p id="desc">Нажми на кнопку, чтобы открыть главное послание...</p>
 
-        <div id="secret-content">
-            <div class="message-box">
-                Ты моё самое главное вдохновение и счастье.<br><br>
-                Хочу обнимать тебя крепко-крепко и никогда не отпускать. Верю в тебя всей душой 💖✨
+            <button class="btn-portal" id="btn" onclick="launchMagic()">Открыть Вселенную 💖</button>
+
+            <div id="secret-message">
+                <div class="glass-box">
+                    Ты моя прекрасная🌟<br><br>
+                    Я верю в тебя. Помни ты не одна, я всегда рядом с тобой<br><br>
+                    Безумно люблю тебя, my wife 💖💍✨
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // 3D эффект наклона карточки за мышкой
-        const card = document.getElementById('card');
-        document.addEventListener('mousemove', (e) => {
-            const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-            const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-            card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-            
-            // Создание искр за курсором
-            createSparkle(e.clientX, e.clientY);
-        });
+        // --- 1. CANVAS STARFIELD & PARTICLES ENGINE ---
+        const canvas = document.getElementById('space-canvas');
+        const ctx = canvas.getContext('2d');
 
-        // Частицы при движении
-        function createSparkle(x, y) {
-            const sparkle = document.createElement('div');
-            sparkle.className = 'sparkle';
-            const size = Math.random() * 12 + 6;
-            sparkle.style.width = `${size}px`;
-            sparkle.style.height = `${size}px`;
-            sparkle.style.left = `${x - size / 2}px`;
-            sparkle.style.top = `${y - size / 2}px`;
-            document.body.appendChild(sparkle);
+        let width, height;
+        let particles = [];
+        let mouse = { x: null, y: null };
 
-            setTimeout(() => sparkle.remove(), 1000);
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor(x, y, color, speedX, speedY, size) {
+                this.x = x || Math.random() * width;
+                this.y = y || Math.random() * height;
+                this.color = color || `hsl(${Math.random() * 60 + 320}, 100%, 75%)`;
+                this.size = size || Math.random() * 2 + 1;
+                this.speedX = speedX || (Math.random() - 0.5) * 0.8;
+                this.speedY = speedY || (Math.random() - 0.5) * 0.8;
+                this.alpha = 1;
+                this.decay = Math.random() * 0.005 + 0.002;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x < 0 || this.x > width) this.speedX *= -1;
+                if (this.y < 0 || this.y > height) this.speedY *= -1;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 12;
+                ctx.shadowColor = this.color;
+                ctx.fill();
+                ctx.restore();
+            }
         }
 
-        // Звуковой эффект колокольчика (Web Audio API)
-        function playChime() {
+        // Создаем начальные звезды
+        for (let i = 0; i < 120; i++) {
+            particles.push(new Particle());
+        }
+
+        // Интерактивный шлейф за мышкой
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+            for (let i = 0; i < 2; i++) {
+                let p = new Particle(mouse.x, mouse.y, '#ffb3c1', (Math.random() - 0.5) * 2, (Math.random() - 0.5) * 2, Math.random() * 3 + 2);
+                particles.push(p);
+            }
+        });
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+
+            particles.forEach((p, index) => {
+                p.update();
+                p.draw();
+                if (p.alpha <= 0) particles.splice(index, 1);
+            });
+
+            // Ограничиваем кол-во частиц для плавности (60 FPS)
+            if (particles.length > 200) particles.splice(0, 20);
+
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // --- 2. 3D GYRO / MOUSE PARALLAX FOR CARD ---
+        const card = document.getElementById('card');
+        document.addEventListener('mousemove', (e) => {
+            const xAxis = (window.innerWidth / 2 - e.clientX) / 20;
+            const yAxis = (window.innerHeight / 2 - e.clientY) / 20;
+            card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+
+        // --- 3. EXPLOSION & SOUND ON CLICK ---
+        function launchMagic() {
+            // Аудио синтезатор космического перелива
             const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             const osc = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
 
             osc.type = 'sine';
-            osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5
-            osc.frequency.exponentialRampToValueAtTime(1174.66, audioCtx.currentTime + 0.8); // D6
+            osc.frequency.setValueAtTime(440, audioCtx.currentTime); 
+            osc.frequency.exponentialRampToValueAtTime(880, audioCtx.currentTime + 1);
 
-            gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.8);
+            gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 1);
 
             osc.connect(gain);
             gain.connect(audioCtx.destination);
-
             osc.start();
-            osc.stop(audioCtx.currentTime + 0.8);
-        }
+            osc.stop(audioCtx.currentTime + 1);
 
-        // Запуск анимации при клике
-        function revealMagic() {
-            playChime();
-            document.getElementById('icon').innerHTML = '👑';
-            document.getElementById('title').innerText = 'Ты моя королева';
+            // Взрыв звезд из центра
+            const rect = card.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+
+            for (let i = 0; i < 100; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 8 + 2;
+                const p = new Particle(
+                    centerX, 
+                    centerY, 
+                    ['#ff4d6d', '#ffb3c1', '#7b2cbf', '#ffffff'][Math.floor(Math.random() * 4)],
+                    Math.cos(angle) * speed,
+                    Math.sin(angle) * speed,
+                    Math.random() * 4 + 2
+                );
+                particles.push(p);
+            }
+
+            // UI переключение
+            document.getElementById('avatar').innerText = '💖';
+            document.getElementById('title').innerText = 'Моя Королева';
             document.getElementById('desc').style.display = 'none';
-            document.getElementById('action-btn').style.display = 'none';
-            document.getElementById('secret-content').style.display = 'block';
+            document.getElementById('btn').style.display = 'none';
+            document.getElementById('secret-message').style.display = 'block';
         }
     </script>
-
 </body>
 </html>
